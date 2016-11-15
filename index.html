@@ -1,0 +1,31 @@
+<!doctype html>
+<html ng-app="demo">
+	<head>
+		<title>Hello AngularJS</title>
+		<script src="final/jquery-3.1.1.min.js"></script>
+		<script src="final/angular.min.js"></script>
+    	<script src="hello.js"></script>
+
+	</head>
+
+	<body>	
+	
+	<div id="status" align=right >User is online</div>
+	
+	
+	
+		<div id="out" ng-controller="Hello" >
+            
+            <h4 ng-repeat="x in greet">{{x}}</h4>
+            
+            </div>
+
+<form ng-submit="submit()" ng-controller="upload">
+  Enter Email Id, Name and Roll Number separated by coma(",")
+  <input type="text" ng-model="text" name="text" />
+  <input type="submit" id="submit" value="Submit" />
+  
+</form>
+                   
+	</body>
+</html>
