@@ -4,9 +4,14 @@ app.controller('Hello', function ($scope, $http) {
     $http.get('http://node-code.herokuapp.com/').then(function (response) {
         var out = response.data;
         var last = 0,
+            run = 0,
+            count1 = 0,
+            count2 = 0,
             str = [],
+            question = [],
+            anso = [],
             final = [],
-            over, parsed, item, flag;
+            over, parsed, item, flag, taskid;
         for (flag in out[0]) {
             if (flag == "_id")
                 break;
@@ -24,7 +29,30 @@ app.controller('Hello', function ($scope, $http) {
         localStorage.setItem("server", final);
         over = localStorage.getItem("server");
         parsed = over.split(',');
+
+        // $scope.greet=parsed;
+
+        var len = parsed.length;
+
         $scope.greet = parsed;
+
+        for (var ii = 0; ii < len; ii++) {
+
+            if (parsed[ii].match(/\d+/) != null)
+                question.push(parsed[ii]);
+            else if (parsed[ii].match(/A./g) != null)
+                anso.push(parsed[ii]);
+            else if (parsed[ii].match(/B./g) != null)
+                anso.push(parsed[ii]);
+            else if (parsed[ii].match(/C./g) != null)
+                anso.push(parsed[ii]);
+            else if (parsed[ii].match(/D./g) != null)
+                anso.push(parsed[ii]);
+
+        }
+
+        $scope.question = question;
+        $scope.anso = anso;
 
         function updateOnlineStatus() {
             document.getElementById("status").innerHTML =
@@ -43,13 +71,31 @@ app.controller('Hello', function ($scope, $http) {
 });
 app.controller('upload', ['$scope', function ($scope, $http)
     {
-        var rlist = [],
+
+        var rlist = [],anlist=[],
             st, key, val1;
         $scope.list = [];
         $scope.text = '';
-
         $scope.submit = function () {
-            if ($scope.text) {
+            
+        var rad=document.getElementsByTagName('input');
+        for(but in rad)
+            {
+            if(rad[but].type=='radio')
+            
+                console.log(rad[but].id+but);
+            
+            else
+                document.getElementById("h1");
+            }
+        
+//            if(rad[but].checked)
+//                anlist.push(rad[but]);
+//                break;
+//                }
+           // console.log(anlist);
+            if ($scope.text) 
+            {
                 $scope.list.push(this.text);
                 rlist = $scope.list;
                 st = rlist[0];

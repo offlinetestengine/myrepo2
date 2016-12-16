@@ -1,31 +1,41 @@
 <!doctype html>
 <html ng-app="demo">
-	<head>
-		<title>Hello AngularJS</title>
-		<script src="final/jquery-3.1.1.min.js"></script>
-		<script src="final/angular.min.js"></script>
-    	<script src="hello.js"></script>
 
-	</head>
+<head>
+    <title>Hello AngularJS</title>
+    <script src="final/jquery-3.1.1.min.js"></script>
+    <script src="1angular.min.js"></script>
+    <script src="hello.js"></script>
 
-	<body>	
-	
-	<div id="status" align=right >User is online</div>
-	
-	
-	
-		<div id="out" ng-controller="Hello" >
-            
-            <h4 ng-repeat="x in greet">{{x}}</h4>
-            
-            </div>
+</head>
 
-<form ng-submit="submit()" ng-controller="upload">
-  Enter Email Id, Name and Roll Number separated by coma(",")
-  <input type="text" ng-model="text" name="text" />
-  <input type="submit" id="submit" value="Submit" />
-  
-</form>
-                   
-	</body>
+<body>
+
+    <div id="status" align=right>User is online</div>
+
+    <div class="fin" ng-controller="Hello">
+
+        <div ng-repeat="x in question">
+
+            <br> {{question[$index]}}
+            <br>
+
+            <input type='radio' id="{{anso[$index]}}" name="{{$index}}" value="{{anso[$index]}}"> {{anso[$index]}}
+            <br>
+            <input type='radio' id="{{anso[$index+1]}}" name="{{$index}}" value="{{anso[$index+1]}}"> {{anso[$index+1]}}
+            <br>
+            <input type='radio' id="{{anso[$index+2]}}" name="{{$index}}" value="{{anso[$index+2]}}"> {{anso[$index+2]}}
+            <br>
+            <input type='radio' id="{{anso[$index+3]}}" name="{{$index}}" value="{{anso[$index+3]}}"> {{anso[$index+3]}}
+            <br>
+        </div>
+
+        <form ng-submit="submit()" ng-controller="upload">
+            Enter Email Id, Name and Roll Number separated by coma(",")
+            <input type="text" ng-model="text" name="text" />
+            <input type="submit" id="submit" value="Submit" />
+        </form>
+
+</body>
+
 </html>
