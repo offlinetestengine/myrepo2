@@ -1,5 +1,4 @@
 var app = angular.module('demo', []);
-
 app.controller('Hello', function ($scope, $http) {
     $http.get('http://node-code.herokuapp.com/').then(function (response) {
         var out = response.data;
@@ -50,7 +49,7 @@ app.controller('Hello', function ($scope, $http) {
                 anso.push(parsed[ii]);
 
         }
-
+        document.getElementById("hide").value = anso.length;
         $scope.question = question;
         $scope.anso = anso;
 
@@ -65,44 +64,37 @@ app.controller('Hello', function ($scope, $http) {
         }
         window.addEventListener('online', updateOnlineStatus);
         window.addEventListener('offline', updateOfflineStatus);
-
     });
-
 });
+
 app.controller('upload', ['$scope', function ($scope, $http)
     {
-
-        var rlist = [],anlist=[],
+        var rlist = [],
+            anlist = [],
+            mark1 = [],
             st, key, val1;
+        var timex = 0,
+            fillit = [];
         $scope.list = [];
         $scope.text = '';
-        $scope.submit = function () {
-            
-        var rad=document.getElementsByTagName('input');
-        for(but in rad)
-            {
-            if(rad[but].type=='radio')
-            
-                console.log(rad[but].id+but);
-            
-            else
-                document.getElementById("h1");
-            }
-        
-//            if(rad[but].checked)
-//                anlist.push(rad[but]);
-//                break;
-//                }
-           // console.log(anlist);
-            if ($scope.text) 
-            {
+        $scope.submit = function () 
+        {
+            var inplist = document.getElementsByTagName("input");
+            for (timex; timex < document.getElementById("hide").value; timex++) {
+                if (inplist[timex].type == "radio") {
+                    if (inplist[timex].checked) {
+                        fillit.push(inplist[timex].value);
+                    }
+                }
+            }console.log(fillit);
+            if ($scope.text) {
                 $scope.list.push(this.text);
                 rlist = $scope.list;
                 st = rlist[0];
                 $scope.text = '';
                 key = st.split(',');
-                val1 = localStorage.getItem("upload2");
-
+                //    val1 = localStorage.getItem("upload2");
+                val1 = fillit;
                 $.ajax({
                     url: "https://api.mlab.com/api/1/databases/offlinedb/collections/table2?apiKey=INZ1LqXv2Q23Ajn_k3eTsoxCldQBSCk-",
                     data: JSON.stringify({
